@@ -1,6 +1,6 @@
 import math
 from extras import move
-import bullets
+from bullets import Bullet
 import random as r
 
 spuds = []
@@ -54,7 +54,7 @@ class Robot ():
             self.x = x
             self.y = y
     
-    def shoot(self, trigger):
+    def shooting(self, trigger, bullets):
         if self.fireCounter < self.fireRate:
             self.fireCounter += 1
            
@@ -62,18 +62,20 @@ class Robot ():
             #creates a starting location for the bullet that is separated from the robot
             separation = 25
             x, y = move(self.x, self.y, self.angle, separation) 
-            spuds.append(bullets.Bullet(x, y, self.angle, 5))
-            
+            bullets.append(Bullet(x, y, self.angle, 5))
+            self.fireCounter = 0
         
-    def update (self, left, right, forward, reverse, shoot, bullets):
+    def update (self, left, right, forward, reverse, trigger, bullets):
         
         #Turning control
         self.turn(left,right)
         
         #movement control
         self.updateLocation(forward, reverse)
-        #bullets.appen
-        return shoot
+        
+        #check if it's time to make a new bullet
+        self.shooting(trigger, bullets)
+  
     def updateScore(self, value):
         self.score += value
     

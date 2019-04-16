@@ -1,3 +1,4 @@
+from extras import move, collide
 class Bullet ():
     
     def __init__(self, x, y, angle, speed):
@@ -15,7 +16,7 @@ class Bullet ():
         
     def update (self, robots):
         
-        self.x, self.y = move(self.x, self.y, self.angle-180, self.speed)
+        self.x, self.y = move(self.x, self.y, self.angle, self.speed)
         self.counter += 1
         
         if self.counter > 400:
@@ -24,7 +25,7 @@ class Bullet ():
         # collission detection loop 
         if robots:
             for i in robots:
-                if collide(self.x, i.x, self.y, i.y, 40, 5):
+                if collide(self.x, i.x, self.y, i.y, 20, 1):
                     i.dead = True
                     self.dead = True
         

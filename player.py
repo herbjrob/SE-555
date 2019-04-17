@@ -7,7 +7,7 @@ spuds = []
 
 class Robot ():
     
-    def __init__(self, x, y, color, speed, fireRate, wallWidth, wallHeight):
+    def __init__(self, x, y, color, speed, fireRate, wallWidth, wallHeight, radius = 20):
         
         #initialise position variables
         
@@ -19,6 +19,7 @@ class Robot ():
         self.fireRate = fireRate * 100
         self.color = color
         self.score = 0
+        self.radius = radius
         
         self.wallWidth = wallWidth
         self.wallHeight = wallHeight
@@ -48,7 +49,7 @@ class Robot ():
     
         x, y = move(self.x, self.y, self.angle, self.speed)
         
-        if x-20 < 0 or x+20 > self.wallWidth or y-20 < 0 or y+20 > self.wallHeight:
+        if x-self.radius < 0 or x+self.radius > self.wallWidth or y-self.radius < 0 or y+self.radius > self.wallHeight:
             self.angle += 180
         else:
             self.x = x

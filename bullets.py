@@ -1,14 +1,15 @@
 from extras import move, collide
 class Bullet ():
     
-    def __init__(self, x, y, angle, speed):
+    def __init__(self, x, y, angle, speed, radius = 2):
         
         #initialise position variables
         
         self.x = x
         self.y = y
         self.angle = angle
-        self.speed = speed       
+        self.speed = speed 
+        self.radius = radius
         
         #misc        
         self.counter = 0
@@ -25,7 +26,7 @@ class Bullet ():
         # collission detection loop 
         if robots:
             for i in robots:
-                if collide(self.x, i.x, self.y, i.y, 20, 1):
+                if collide(self.x, i.x, self.y, i.y, i.radius, self.radius):
                     i.dead = True
                     self.dead = True
         

@@ -1,3 +1,4 @@
+import random as r
 from extras import move, collide
 from PyQt5.QtCore import Qt
 
@@ -20,20 +21,14 @@ class Resource ():
         
         self.radius = radius
         
-        #misc        
-        self.counter = 0
-        self.dead = False
-        
-    def update (self):
-        
-        if self.dead:
-            self.dead = True
+    def update (self,robots):
             
         # collission detection loop 
         if robots:
             for i in robots:
-                if collide(self.x, i.x, self.y, i.y, i.radius, self.radius):
+                if collide(self.x+self.radius/2, i.x, self.y+self.radius/2, i.y, i.radius, self.radius):
                   
-                    self.dead = True
                     i.updateScore(self.reward)
+                    self.x = r.randint(self.xmin, self.xmax)
+                    self.y = r.randint(self.ymin, self.ymax)
         

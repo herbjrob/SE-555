@@ -23,7 +23,7 @@ class Bullet ():
         if self.counter > 400:
             self.dead = True
             
-        # collission detection loop 
+        # collision detection loop 
         if robots:
             for i in robots:
                 if collide(self.x, i.x, self.y, i.y, i.radius, self.radius):

@@ -36,9 +36,9 @@ class Robot ():
     def turn (self, l, r):
         
         if l> r:
-            self.angle -= 1
+            self.angle -= 2
         elif r>l:
-            self.angle += 1
+            self.angle += 2
     
     def updateLocation (self, forward, reverse):
         accel = 0.1
@@ -59,7 +59,7 @@ class Robot ():
         if self.fireCounter < self.fireRate:
             self.fireCounter += 1
            
-        elif trigger > 0.5:
+        elif trigger > 8:
             #creates a starting location for the bullet that is separated from the robot
             separation = 25
             x, y = move(self.x, self.y, self.angle, separation) 
